@@ -5,7 +5,13 @@ from keras.layers import Dense, Flatten,Input, Convolution2D, Dropout, LSTM, Tim
 from keras.models import Sequential, Model
 from keras.utils import np_utils
 from keras.preprocessing import image, sequence
+import ctypes
+import importlib
 
+ctypes.CDLL('/PATH/TO/libglib-2.0.so.0')
+ctypes.CDLL('/PATH/TO/libgthread-2.0.so.0')
+
+cv2 = importlib.import_module('cv2')
 
 embedding_size = 128
 vocab_size = 8254
@@ -53,7 +59,6 @@ resnet = ResNet50(include_top=False,weights='imagenet',input_shape=(224,224,3),p
 resnet.save('resnet.h5')
 
 
-import cv2
 from keras.preprocessing.sequence import pad_sequences
 
 img = cv2.imread('download.png')

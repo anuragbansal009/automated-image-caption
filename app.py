@@ -1,10 +1,15 @@
 from flask import Flask, render_template, request
-import cv2
 import tensorflow as tf
 import numpy as np
 from tqdm import tqdm
 import pickle
+import ctypes
+import importlib
 
+ctypes.CDLL('/PATH/TO/libglib-2.0.so.0')
+ctypes.CDLL('/PATH/TO/libgthread-2.0.so.0')
+
+cv2 = importlib.import_module('cv2')
 
 
 app = Flask(__name__)
